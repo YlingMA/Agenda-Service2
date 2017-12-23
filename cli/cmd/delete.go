@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/YlingMA/Agenda-Service2/service"
+	"github.com/YlingMA/Agenda-Service2/cli/service"
 	"github.com/spf13/cobra"
 )
 
