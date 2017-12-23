@@ -65,7 +65,7 @@ func ListAllUsers() (user []User, err error) {
 
 var (
 	scheme = "http"
-	host   = "localhost:8000"
+	host   = "localhost:8080"
 	//scheme = "https"
 	//host = "private-89d1b-agenda28.apiary-mock.com"
 )
