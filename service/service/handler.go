@@ -3,7 +3,7 @@ package service
 import (
 	"net/http"
 
-	"github.com/Caroline1997/Service-Agenda/service/entities"
+	"github.com/YlingMA/Agenda-Service2/service/entities"
 
 	"encoding/json"
 	"fmt"
