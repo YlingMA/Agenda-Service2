@@ -1,0 +1,166 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# agenda
+
+Polls is a simple API allowing consumers to view polls and vote in them.
+
+## Group User [/v1/user]
+
+### Check Login [GET /v1/user/login]
+    
++ Response 200 (application/json)
+
+        {
+            "username":"root"
+        }
+        
++ Response 401 (application/json)
+        
+        {
+        }
+        
+### Login [POST /v1/user/login]
+
++ Request (application/json)
+
+        {
+            "username":"root",
+            "password":"pass"
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "username":"root",
+            "message":"Succeed to log in"
+        }
++ Response 400 (application/json) 
+
+        {
+            "message":"You have logged in, please log out first"
+        }
+
++ Response 401 (application/json)
+
+        {
+            "message":"the name and password anr incorrect"
+        }
+### Logout [POST /v1/user/logout]
+
++ Response 200 (application/json)
+
+    + Header 
+    
+            Location: /v1/user/login
+
+
+### Delete [DELETE /v1/user/account]
+
++ Response 200 (application/json)
+
+    + Header
+            
+            Location: /v1/user/login
+            
++ Response 401 (application/json)
+
+## Group Users [/v1/users]
+
+### Register [POST]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "username":"root",
+                "password":"pass",
+                "email":"email@xxx.com",
+                "phonenumber":"12345612345"
+            }
+            
++ Response 201 (application/json)
+
+    + Header
+    
+            Location: /v1/user/login
+    
+    + Body
+    
+            {}
+            
++ Response 400 (application/json)
+
+        {
+            "message": "incorrect username"
+        }
+        
+### Show All Usersshow [GET /v1/users]
+
++ Response 200 (application/json)
+
+        [
+            {"username": "u1"},
+            {"username": "u2"}
+        ]
+    
++ Response 401 (application/json)
+
+## Group Meetings [/v1/meetings]
+
+### Create Meeting [POST /v1/meetings]
+
++ Request (application/json)
+
+    + Body
+    
+            {
+                "title":"meeting",
+                "participators":"par",
+                "startTime":"2017-12-11/11:00",
+                "endTime":"2017-12-11/12:00"
+            }
+            
++ Response 201 (application/json)
+
+    + Header
+    
+            Location: /v1/meetings
+    
+    + Body
+        
+            {
+            }
+    
++ Response 400 (application/json)
+
+        {
+            "message":"incorrect title"
+        }
+
++ Response 401 (application/json)
+        
+### Query Meetings [GET /v1/meetings{?startTime,endTime}]
+
++ Parameters
+    - startTime : `2017-12-11/11:00` (string, required) - Start Time
+    - endTime : `2017-12-11/12:00` (string, required) - End Time
+
++ Response 200 (application/json)
+
+        [
+            {
+                "title":"meeting",
+                "sponsor":"root",
+                "participators":["par"],
+                "startTime":"2017-12-11/11:00",
+                "endTime":"2017-12-11/12:00"
+            }
+        ]
+        
++ Response 400 (application/json)
+
+        []
+        
++ Response 401 (application/json)
